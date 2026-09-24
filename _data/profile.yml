@@ -3,14 +3,14 @@ secondary_name: ""
 navbar_name: "Yuang Zhang"
 
 positions:
-  - name: Ph.D. Candidate in Computer Science
+  - name: Ph.D. Student in Computer Science
   - name: George Mason University
 
 github: dasddassad
 
 short_bio_text_justify: false
 short_bio: >-
-  <p>I am a Ph.D. candidate in Computer Science at George Mason University, advised by
+  <p>I am a Ph.D. student in Computer Science at George Mason University, advised by
   <a href="https://people.cs.gmu.edu/~fangyiyu/">Fang-Yi Yu</a>. My research sits at the
   intersection of algorithmic game theory and machine learning.</p>
   <p>I study how to elicit reliable information from strategic agents. My current interests
@@ -21,5 +21,5 @@ short_bio: >-
 
 education:
   - name: George Mason University
-    position: Ph.D. Candidate in Computer Science
+    position: Ph.D. Student in Computer Science
     date: 2023 - present
