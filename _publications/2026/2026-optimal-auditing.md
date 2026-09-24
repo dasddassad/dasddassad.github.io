@@ -13,5 +13,4 @@ authors:
   - Yuang Zhang
 links:
   Paper: https://doi.org/10.1609/aaai.v40i20.38722
-  Code: https://github.com/dasddassad/Optimally-Auditing-Adversarial-Agents
 ---
