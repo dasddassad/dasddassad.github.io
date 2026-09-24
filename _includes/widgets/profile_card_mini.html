@@ -2,9 +2,9 @@
     <div class="col">
         <div class="card border-0 shadow-sm bg-white">
             <div class="card-body px-4 pt-4 pb-3">
+                {% if site.data.profile.portrait_url %}
                 <div class="row">
                     <div class="col">
-                        {% if site.data.profile.portrait_url %}
                         <!-- When the screen is wider than md, float the portrait on the right -->
                         <div class="figure d-none d-md-block">
                             <img 
@@ -17,9 +17,9 @@
                         <div class="mb-3 d-md-none text-center">
                             <img src="{{ site.data.profile.portrait_url | relative_url }}" class="rounded-circle" style="max-width: 50%;" alt="Portrait">
                         </div>
-                        {% endif %}
                     </div>
                 </div>
+                {% endif %}
                 <div class="row">
                     <div class="col text-center h4">
                         {{ site.data.profile.primary_name }}
@@ -34,6 +34,7 @@
                     </div>
                 </div>
 
+                {% if site.data.profile.email %}
                 <div class="row small">
                     <div class="col text-center">
                         <a class="email-text" href="mailto:{{ site.data.profile.email | encode_email }}">
@@ -41,6 +42,7 @@
                         </a>
                     </div>
                 </div>
+                {% endif %}
 
                 <div class="row pt-2">
                     <div class="col text-center h4">
