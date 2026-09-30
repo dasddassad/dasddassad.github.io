@@ -11,15 +11,22 @@ github: dasddassad
 short_bio_text_justify: false
 short_bio: >-
   <p>I am a Ph.D. student in Computer Science at George Mason University, advised by
-  <a href="https://people.cs.gmu.edu/~fangyiyu/">Fang-Yi Yu</a>. My research sits at the
-  intersection of algorithmic game theory and machine learning.</p>
-  <p>I study how to elicit reliable information from strategic agents. My current interests
-  include audit design, peer prediction, multi-agent learning, and data markets.</p>
+  <a href="https://people.cs.gmu.edu/~fangyiyu/">Fang-Yi Yu</a>.</p>
+  <p>My research focuses on mechanisms for eliciting reliable information from strategic
+  agents. I work on strategic auditing, peer prediction with cheap signals, and truthful
+  data procurement, combining theoretical analysis with computational experiments.</p>
 
 # Add portrait_url and portrait_caption here if you would like a photo on the site.
-# Add cv_link after reviewing the PDF you want to make public.
 
 education:
   - name: George Mason University
     position: Ph.D. Student in Computer Science
     date: 2023 - present
+
+experience:
+  - name: George Mason University
+    position: Graduate Teaching Assistant
+    date: 2023 - present
+  - name: The George Washington University
+    position: Teaching Assistant
+    date: Aug. 2022 - May 2023

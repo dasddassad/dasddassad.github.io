@@ -1,0 +1,8 @@
+- category: Programming and scientific computing
+  description: Python (NumPy, SciPy, pandas).
+- category: Optimization and statistical modeling
+  description: Convex optimization (CVXPY), least-squares regression, experimental design, and model evaluation (scikit-learn).
+- category: Computational experiments
+  description: Game-theoretic simulations, EXP3 learning dynamics, LLM-agent evaluation, benchmarking, and sensitivity analysis.
+- category: Research tools
+  description: Jupyter Notebook, Matplotlib, LaTeX, and Overleaf.

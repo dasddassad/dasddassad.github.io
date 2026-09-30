@@ -1,0 +1,33 @@
+intro: >-
+  I study mechanisms that elicit reliable information when participants have incentives
+  to misreport or substitute low-cost signals. My work combines equilibrium and
+  incentive analysis with algorithm design and computational evaluation.
+projects:
+  - id: auditing
+    topic: Strategic auditing
+    title: Optimally Auditing Adversarial Agents
+    status: AAAI 2026 · Oral
+    summary: Designing audit policies that account for strategic misreporting and unfavorable equilibrium selection.
+    question: How should a principal allocate audits when strategic agents can misreport and select unfavorable equilibria?
+    details:
+      - 'Co-developed an $\varepsilon$-optimal auditing algorithm with $O(m^2)$ runtime for $m$ private types by reducing continuous policy optimization to a finite search.'
+      - Analyzed adaptive and budget-constrained extensions; simulated how audit costs, penalties, and type distributions affect misreporting, principal utility, and social welfare.
+    paper_url: https://doi.org/10.1609/aaai.v40i20.38722
+  - id: speakeasy
+    topic: Peer prediction with cheap signals
+    title: "Speakeasy: Auditing Cheap Signals in Peer Prediction"
+    status: Accepted to NeurIPS 2026 · Poster
+    summary: Auditing correlated cheap signals to support costly, truthful information elicitation.
+    question: How can peer prediction reward informed reports when agents can copy correlated, low-cost signals such as LLM outputs?
+    details:
+      - Co-developed a mechanism that penalizes agreement with sampled cheap signals; computed optimal audit distributions and characterized cost thresholds for truthful equilibria.
+      - Benchmarked five base mechanisms on ICLR peer-review data and HANS; used EXP3 and LLM agents to examine truthful convergence and persistent cheap-signal coordination.
+  - id: grades
+    topic: Truthful data procurement
+    title: Truthful Data Procurement via Experimental Design (GRADES)
+    status: Work in progress
+    summary: Selecting and paying for useful data before the purchased labels are revealed.
+    question: How should a buyer select and pay data sellers before observing their labels, while incentivizing truthful costs and label delivery?
+    details:
+      - Developing a mechanism that combines feature-based experimental design, distorted greedy allocation, critical-bid payments, and data quality bonuses.
+      - Evaluating prediction error, welfare, acquisition cost, and selection runtime on Gaussian regression, MIMIC-III, RSNA Bone Age, Fitzpatrick17K, and DrugLib against DAVED, Data-OOB, and random selection.

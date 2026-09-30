@@ -1,0 +1,38 @@
+---
+layout: default
+title: Teaching
+navbar_title: Teaching
+---
+
+<div class="row">
+    <div class="col-lg-3 col-md-4">
+        {% include widgets/profile_card_mini.html %}
+    </div>
+    <div class="col-lg-9 col-md-8">
+        <div class="card border-0 shadow-sm bg-white mb-3">
+            <div class="card-body p-4">
+                <h1 class="h3">Teaching</h1>
+                <p class="mb-0">{{ site.data.teaching.intro }}</p>
+            </div>
+        </div>
+        {% for appointment in site.data.teaching.appointments %}
+        <section class="card border-0 shadow-sm bg-white mb-3">
+            <div class="card-body p-4">
+                <h2 class="h5 mb-1">{{ appointment.institution }}</h2>
+                <p class="small text-muted mb-3">{{ appointment.role }} · {{ appointment.date }}</p>
+                {% for course in appointment.courses %}
+                <h3 class="h6">{{ course.name }}{% if course.note %} <span class="font-weight-normal text-muted">({{ course.note }})</span>{% endif %}</h3>
+                <ul class="pl-3">
+                    {% for responsibility in course.responsibilities %}<li class="mb-1">{{ responsibility }}</li>{% endfor %}
+                </ul>
+                {% endfor %}
+                {% if appointment.responsibilities %}
+                <ul class="pl-3 mb-0">
+                    {% for responsibility in appointment.responsibilities %}<li class="mb-1">{{ responsibility }}</li>{% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+</div>

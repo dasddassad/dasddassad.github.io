@@ -1,0 +1,28 @@
+name: Check academic homepage
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: ruby/setup-ruby@v1.327.0
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Build the website
+        run: bundle exec jekyll build --destination _site
+      - name: Save the private preview
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: academic-homepage-preview
+          path: _site/
+          retention-days: 7

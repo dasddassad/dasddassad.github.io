@@ -1,0 +1,25 @@
+intro: >-
+  I have served as a graduate teaching assistant at George Mason University for three
+  years, primarily for CS 262. My responsibilities include lab instruction, office
+  hours, grading, and support for advanced coursework and research-paper discussions.
+appointments:
+  - institution: George Mason University
+    role: Graduate Teaching Assistant
+    date: 2023 - present
+    courses:
+      - name: CS 262
+        note: Primary assignment
+        responsibilities:
+          - Lead programming lab sessions, walk students through lab exercises, and help troubleshoot their code.
+          - Hold office hours for programming assignments and course concepts.
+          - Grade assignments and provide feedback on students' programming solutions.
+      - name: CS 692
+        responsibilities:
+          - Hold office hours for advanced-course homework and explain relevant technical concepts.
+          - Discuss research papers and students' questions about their methods and arguments.
+  - institution: The George Washington University
+    role: Teaching Assistant
+    date: Aug. 2022 - May 2023
+    responsibilities:
+      - Collaborated with other teaching assistants to write and peer-review homework solutions, checking correctness and clarity.
+      - Graded student assignments and proctored midterm and final examinations.

@@ -1,0 +1,35 @@
+---
+layout: default
+title: Technical Skills
+navbar_title: Skills
+---
+
+<div class="row">
+    <div class="col-lg-3 col-md-4">
+        {% include widgets/profile_card_mini.html %}
+    </div>
+    <div class="col-lg-9 col-md-8">
+        {% if site.data.profile.cv_link %}
+        <section class="card border-0 shadow-sm bg-white mb-3">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-3">Curriculum Vitae</h1>
+                <p>My CV includes my education, publications, research, and teaching experience.</p>
+                <a class="btn btn-outline-primary" href="{{ site.data.profile.cv_link | relative_url }}" download>
+                    <i class="fas fa-file-pdf mr-1" aria-hidden="true"></i> Download CV (PDF)
+                </a>
+            </div>
+        </section>
+        {% endif %}
+        <section class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-3">Technical Skills</h1>
+                <dl class="mb-0">
+                    {% for skill in site.data.skills %}
+                    <dt>{{ skill.category }}</dt>
+                    <dd{% if forloop.last %} class="mb-0"{% endif %}>{{ skill.description }}</dd>
+                    {% endfor %}
+                </dl>
+            </div>
+        </section>
+    </div>
+</div>

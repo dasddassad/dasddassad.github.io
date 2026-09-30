@@ -1,0 +1,11 @@
+<section class="card border-0 shadow-sm bg-white mt-3" aria-labelledby="research-overview-title">
+    <div class="card-body p-4">
+        <h2 id="research-overview-title" class="h5 mb-3">Research</h2>
+        {% for project in site.data.research.projects %}
+        <div class="{% unless forloop.last %}mb-3{% endunless %}">
+            <h3 class="h6 mb-1"><a href="{{ '/research' | relative_url }}#{{ project.id }}">{{ project.topic }}</a></h3>
+            <p class="small text-muted mb-0">{{ project.summary }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>

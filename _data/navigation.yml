@@ -1,5 +1,11 @@
 pages:
   - name: Home
     url: /
+  - name: Research
+    url: /research
   - name: Publications
     url: /publications
+  - name: Teaching
+    url: /teaching
+  - name: Skills
+    url: /cv

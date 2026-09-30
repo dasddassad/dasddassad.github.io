@@ -4,9 +4,10 @@ date: 2026-03-14 00:01:00 +0000
 selected: true
 pub: "AAAI Conference on Artificial Intelligence"
 pub_date: "2026"
+pub_last: '<span class="badge badge-pill badge-publication badge-success">Oral</span>'
 abstract: >-
-  Algorithms for optimal audit policies against strategic agents, in both adaptive and
-  non-adaptive settings, with an extension to limited audit budgets.
+  Efficient audit-policy algorithms that account for strategic misreporting and
+  worst-case equilibrium selection, with adaptive and limited-budget extensions.
 authors:
   - Sanmay Das
   - Fang-Yi Yu
