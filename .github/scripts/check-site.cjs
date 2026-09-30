@@ -36,7 +36,15 @@ const server = http.createServer((request, response) => {
     for (const viewport of [{width:1280,height:900},{width:390,height:844}]) {
       const context = await browser.newContext({viewport});
       const page = await context.newPage();
-      for (const name of ['index','research','publications','teaching','cv']) {
+      if (viewport.width === 1280) {
+        for (const route of ['research','teaching','cv']) {
+          for (const suffix of ['', '.html']) {
+            const removed = await context.request.get(`${origin}/${route}${suffix}`);
+            if (removed.status() !== 404) throw new Error(`Removed page remains available: /${route}${suffix}`);
+          }
+        }
+      }
+      for (const name of ['index','publications']) {
         const response = await page.goto(`${origin}/${name === 'index' ? '' : name}`, {waitUntil:'networkidle'});
         if (response.status() !== 200) throw new Error(`${name}: HTTP ${response.status()}`);
         const state = await page.evaluate(() => ({
@@ -47,14 +55,11 @@ const server = http.createServer((request, response) => {
         }));
         if (state.documentWidth > state.width + 1) throw new Error(`${name}: horizontal overflow at ${viewport.width}px`);
         if (name !== 'publications' && !state.text.includes('Ph.D. Student in Computer Science')) throw new Error(`${name}: student designation missing`);
+        if (JSON.stringify(state.navigation.map(item => item.label)) !== JSON.stringify(['Home','Publications'])) throw new Error(`${name}: unexpected navigation items`);
         for (const item of state.navigation) {
           const destination = await context.request.get(origin + item.href);
           if (destination.status() !== 200) throw new Error(`Broken navigation: ${item.href}`);
         }
-        if (name === 'research' && await page.locator('.research-project').count() !== 3) throw new Error('Missing research project');
-        if (name === 'teaching' && (!state.text.includes('CS 262') || !state.text.includes('CS 692'))) throw new Error('Missing teaching course');
-        const expectedCvDownloads = fs.existsSync(path.join(root,'assets/files/Yuang_Zhang_CV.pdf')) ? 1 : 0;
-        if (name === 'cv' && await page.locator('a[download]').count() !== expectedCvDownloads) throw new Error('CV download link does not match the available PDF');
         if (viewport.width < 500) {
           const toggle = page.getByRole('button', {name:'Toggle navigation'});
           await toggle.click();
@@ -62,20 +67,14 @@ const server = http.createServer((request, response) => {
           await toggle.click();
           await page.locator('#navbarResponsive').waitFor({state:'hidden'});
         }
-        if (name === 'index') {
-          const links = await page.locator('a[href^="/research#"]').evaluateAll(items => items.map(item => item.getAttribute('href')));
-          for (const href of links) {
-            const doc = await context.request.get(origin + href.split('#')[0]);
-            if (!(await doc.text()).includes(`id="${href.split('#')[1]}"`)) throw new Error(`Missing research anchor: ${href}`);
-          }
-        }
+        if (name === 'index' && await page.locator('#research-overview-title').count() !== 0) throw new Error('Research section remains on the homepage');
         await page.screenshot({path:path.join(output,`${name}-${viewport.width}.png`),fullPage:true});
         checks.push({page:name,width:viewport.width,navigation:state.navigation,overflow:false});
       }
       await context.close();
     }
     fs.writeFileSync(path.join(output,'results.json'),JSON.stringify(checks,null,2));
-    console.log(`Checked ${checks.length} page/viewport combinations, navigation destinations, research anchors, and the mobile menu.`);
+    console.log(`Checked ${checks.length} page/viewport combinations, navigation destinations, removed pages, and the mobile menu.`);
   } finally {
     if (browser) await browser.close();
     await new Promise(resolve => server.close(resolve));

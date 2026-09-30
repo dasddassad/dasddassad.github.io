@@ -5,9 +5,6 @@ Personal academic site based on [academic-homepage](https://github.com/luost26/a
 ## Updating the site
 
 - Edit `_data/profile.yml` for the biography, contact links, and education.
-- Edit `_data/research.yml` for research questions, methods, and project summaries.
-- Edit `_data/teaching.yml` for appointments, courses, and teaching responsibilities.
-- Edit `_data/skills.yml` for the technical skills shown on the Skills page.
 - Add a Markdown file under `_publications/<year>/` for each new paper.
 - Add dated Markdown files under `_news/` for announcements.
 - Edit `_data/navigation.yml` to add or remove pages.
@@ -16,6 +13,7 @@ Personal academic site based on [academic-homepage](https://github.com/luost26/a
 
 The repository is named `dasddassad.github.io` with an empty `baseurl` in `_config.yml`.
 The website is published at https://dasddassad.github.io/. The repository is public, and GitHub Pages publishes the root folder of the `main` branch.
+The site has Home and Publications pages.
 
 For local development, install Ruby and Bundler, then run `bundle install` and `bundle exec jekyll serve`.
 
