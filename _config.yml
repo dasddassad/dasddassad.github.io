@@ -19,6 +19,8 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - vendor
+  - node_modules
 
 # Build settings
 markdown: kramdown
