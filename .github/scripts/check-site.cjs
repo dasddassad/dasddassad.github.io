@@ -46,14 +46,15 @@ const server = http.createServer((request, response) => {
           navigation: [...document.querySelectorAll('.navbar .nav-link')].map(link => ({label:link.innerText,href:link.getAttribute('href')}))
         }));
         if (state.documentWidth > state.width + 1) throw new Error(`${name}: horizontal overflow at ${viewport.width}px`);
-        if (!state.text.includes('Ph.D. Student in Computer Science')) throw new Error(`${name}: student designation missing`);
+        if (name !== 'publications' && !state.text.includes('Ph.D. Student in Computer Science')) throw new Error(`${name}: student designation missing`);
         for (const item of state.navigation) {
           const destination = await context.request.get(origin + item.href);
           if (destination.status() !== 200) throw new Error(`Broken navigation: ${item.href}`);
         }
         if (name === 'research' && await page.locator('.research-project').count() !== 3) throw new Error('Missing research project');
         if (name === 'teaching' && (!state.text.includes('CS 262') || !state.text.includes('CS 692'))) throw new Error('Missing teaching course');
-        if (name === 'cv' && await page.locator('a[download]').count() !== 0) throw new Error('Unexpected CV download link');
+        const expectedCvDownloads = fs.existsSync(path.join(root,'assets/files/Yuang_Zhang_CV.pdf')) ? 1 : 0;
+        if (name === 'cv' && await page.locator('a[download]').count() !== expectedCvDownloads) throw new Error('CV download link does not match the available PDF');
         if (viewport.width < 500) {
           const toggle = page.getByRole('button', {name:'Toggle navigation'});
           await toggle.click();

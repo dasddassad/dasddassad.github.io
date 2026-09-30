@@ -29,10 +29,12 @@ jobs:
         env:
           NODE_PATH: ${{ runner.temp }}/site-browser/node_modules
       - name: Save layout previews
+        if: always()
         uses: actions/upload-artifact@v7.0.1
         with:
           name: academic-homepage-layout-checks
           path: _preview_checks/
+          if-no-files-found: ignore
           retention-days: 7
       - name: Save the private preview
         uses: actions/upload-artifact@v7.0.1
