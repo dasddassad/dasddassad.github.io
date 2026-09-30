@@ -8,7 +8,7 @@ Personal academic site based on [academic-homepage](https://github.com/luost26/a
 - Add a Markdown file under `_publications/<year>/` for each new paper.
 - Add dated Markdown files under `_news/` for announcements.
 - Edit `_data/navigation.yml` to add or remove pages.
-- After approving a CV for the website, add its PDF to `assets/files/` and set `cv_link` in `_data/profile.yml` to show a download button.
+- Replace `assets/files/Yuang_Zhang_CV.pdf` to update the CV linked from the profile. Its path is set by `cv_link` in `_data/profile.yml`.
 - If a portrait is available, put it in `assets/` and set `portrait_url` in `_data/profile.yml`.
 
 The repository is named `dasddassad.github.io` with an empty `baseurl` in `_config.yml`.

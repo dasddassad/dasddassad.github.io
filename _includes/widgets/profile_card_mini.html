@@ -44,6 +44,16 @@
                 </div>
                 {% endif %}
 
+                {% if site.data.profile.cv_link %}
+                <div class="row mt-3">
+                    <div class="col text-center">
+                        <a class="btn btn-sm btn-outline-primary" href="{{ site.data.profile.cv_link | relative_url }}" target="_blank" rel="noopener">
+                            <i class="fas fa-file-alt" aria-hidden="true"></i> Curriculum Vitae (PDF)
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
                 <div class="row pt-2">
                     <div class="col text-center h4">
                         {% if site.data.profile.gscholar %}

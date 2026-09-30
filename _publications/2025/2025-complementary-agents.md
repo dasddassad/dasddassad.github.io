@@ -2,8 +2,7 @@
 title: "Mixture of Complementary Agents for Robust LLM Ensemble"
 date: 2025-12-01 00:01:00 +0000
 selected: true
-pub: "NeurIPS Workshop on Socially Responsible and Trustworthy Foundation Models (ResponsibleFM)"
-pub_date: "2025"
+pub: "NeurIPS 2025 Workshop on Socially Responsible and Trustworthy Foundation Models (ResponsibleFM)"
 abstract: >-
   Studies how complementary language models can be selected for a robust ensemble
   and evaluates the resulting performance and cost tradeoffs.

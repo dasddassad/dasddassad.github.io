@@ -18,7 +18,7 @@ const server = http.createServer((request, response) => {
     if (!fs.existsSync(target) || !fs.statSync(target).isFile()) {
       response.writeHead(404).end(); return;
     }
-    const types = {'.html':'text/html', '.css':'text/css', '.js':'application/javascript', '.svg':'image/svg+xml', '.png':'image/png', '.jpg':'image/jpeg', '.gif':'image/gif'};
+    const types = {'.html':'text/html', '.css':'text/css', '.js':'application/javascript', '.svg':'image/svg+xml', '.png':'image/png', '.jpg':'image/jpeg', '.gif':'image/gif', '.pdf':'application/pdf'};
     response.setHeader('Content-Type', types[path.extname(target)] || 'application/octet-stream');
     fs.createReadStream(target).pipe(response);
   } catch {
@@ -68,13 +68,22 @@ const server = http.createServer((request, response) => {
           await page.locator('#navbarResponsive').waitFor({state:'hidden'});
         }
         if (name === 'index' && await page.locator('#research-overview-title').count() !== 0) throw new Error('Research section remains on the homepage');
+        if (name === 'index') {
+          const cvLink = page.getByRole('link', {name:'Curriculum Vitae (PDF)', exact:true});
+          if (!await cvLink.isVisible()) throw new Error('CV link is missing or hidden');
+          const cvHref = await cvLink.getAttribute('href');
+          const cvResponse = await context.request.get(new URL(cvHref, origin).href);
+          if (cvResponse.status() !== 200 || cvResponse.headers()['content-type'] !== 'application/pdf') throw new Error('CV download is not served as a PDF');
+          const cvBytes = await cvResponse.body();
+          if (cvBytes.subarray(0,5).toString() !== '%PDF-') throw new Error('CV download is not a valid PDF file');
+        }
         await page.screenshot({path:path.join(output,`${name}-${viewport.width}.png`),fullPage:true});
         checks.push({page:name,width:viewport.width,navigation:state.navigation,overflow:false});
       }
       await context.close();
     }
     fs.writeFileSync(path.join(output,'results.json'),JSON.stringify(checks,null,2));
-    console.log(`Checked ${checks.length} page/viewport combinations, navigation destinations, removed pages, and the mobile menu.`);
+    console.log(`Checked ${checks.length} page/viewport combinations, navigation destinations, CV PDF, removed pages, and the mobile menu.`);
   } finally {
     if (browser) await browser.close();
     await new Promise(resolve => server.close(resolve));
